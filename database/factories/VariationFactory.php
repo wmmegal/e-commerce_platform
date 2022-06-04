@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class VariationFactory extends Factory
      */
     public function definition()
     {
+        $statuses = ['color', 'size'];
+
         return [
-            //
+            'product_id' => Product::class,
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(0, 20000),
+            'type' => $statuses[rand(0, 1)],
+            'sku' => null,
+            'parent_id' => null
         ];
     }
 }
