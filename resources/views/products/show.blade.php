@@ -17,7 +17,7 @@
                             </p>
                         </div>
                         <div class="mt-6">
-                            {{ $product->variations }}
+                            <livewire:product-selector :product="$product" />
                         </div>
 
                     </div>
