@@ -18,7 +18,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => 'Black',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'color',
             'order' => 1
         ]);
@@ -26,7 +26,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => 'White',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'color',
             'order' => 2
         ]);
@@ -34,7 +34,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => '8',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'size',
             'sku' => 'abc',
             'parent_id' => 1,
@@ -44,7 +44,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => '9',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'size',
             'sku' => 'vas',
             'parent_id' => 1,
@@ -54,7 +54,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => '8',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'size',
             'sku' => 'asd',
             'parent_id' => 2,
@@ -64,7 +64,7 @@ class VariationSeeder extends Seeder
         Variation::factory()->create([
             'product_id' => 1,
             'title' => '9',
-            'price' => 0,
+            'price' => 9000,
             'type' => 'size',
             'sku' => 'kas',
             'parent_id' => 2,
