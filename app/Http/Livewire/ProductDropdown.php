@@ -23,9 +23,13 @@ class ProductDropdown extends Component
         return Variation::find($this->selectedVariation);
     }
 
-    #[NoReturn] public function updatedSelectedVariation()
+    public function updatedSelectedVariation()
     {
+        $this->emitTo('product-selector', 'skuVariant', null);
 
+        if ($this->selectedVariationModel?->sku) {
+            $this->emitTo('product-selector', 'skuVariantSelected', $this->selectedVariation);
+        }
     }
 
     public function render()

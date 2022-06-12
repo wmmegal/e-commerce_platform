@@ -15,6 +15,6 @@
 
     @if($this->selectedVariationModel?->children->count())
         <livewire:product-dropdown :variations="$this->selectedVariationModel?->children"
-                                   :key="$this->selectedVariation"/>
+                                   :key="$selectedVariation"/>
     @endif
 </div>
