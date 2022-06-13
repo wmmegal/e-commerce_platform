@@ -31,7 +31,7 @@ class VariationSeeder extends Seeder
             'order' => 2
         ]);
 
-        Variation::factory()->create([
+        $variation_white_1 = Variation::factory()->create([
             'product_id' => 1,
             'title' => '8',
             'price' => 9000,
@@ -41,7 +41,7 @@ class VariationSeeder extends Seeder
             'order' => 1
         ]);
 
-        Variation::factory()->create([
+        $variation_black_1 = Variation::factory()->create([
             'product_id' => 1,
             'title' => '9',
             'price' => 9000,
@@ -51,7 +51,7 @@ class VariationSeeder extends Seeder
             'order' => 2
         ]);
 
-        Variation::factory()->create([
+        $variation_white_2 = Variation::factory()->create([
             'product_id' => 1,
             'title' => '8',
             'price' => 9000,
@@ -61,7 +61,7 @@ class VariationSeeder extends Seeder
             'order' => 2
         ]);
 
-        Variation::factory()->create([
+        $variation_black_2 = Variation::factory()->create([
             'product_id' => 1,
             'title' => '9',
             'price' => 9000,
@@ -70,5 +70,19 @@ class VariationSeeder extends Seeder
             'parent_id' => 2,
             'order' => 1
         ]);
+
+        $variation_white_1->addMedia('nike-white.webp')
+            ->preservingOriginal()
+            ->toMediaCollection();
+        $variation_white_2->addMedia('nike-white.webp')
+            ->preservingOriginal()
+            ->toMediaCollection();
+
+        $variation_black_1->addMedia('nike-black.jpg')
+            ->preservingOriginal()
+            ->toMediaCollection();
+        $variation_black_2->addMedia('nike-black.jpg')
+            ->preservingOriginal()
+            ->toMediaCollection();
     }
 }

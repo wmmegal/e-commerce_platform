@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
-class Variation extends Model
+class Variation extends Model implements HasMedia
 {
-    use HasFactory, HasRecursiveRelationships;
+    use HasFactory, HasRecursiveRelationships, InteractsWithMedia;
 
     public function formattedPrice()
     {
@@ -45,5 +49,20 @@ class Variation extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb200x200')
+            ->fit(Manipulations::FIT_CROP, 200, 200);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')
+            ->useFallbackUrl(url('/public/no-image.png'));
     }
 }

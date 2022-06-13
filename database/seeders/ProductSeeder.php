@@ -15,11 +15,18 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()->create([
+       $product =  Product::factory()->create([
             'title' => ' Nike product',
             'slug' => 'nike-product',
             'description' => 'Nike product description',
             'price' => '9000',
         ]);
+
+        $product->addMedia('nike-white.webp')
+            ->preservingOriginal()
+            ->toMediaCollection();
+        $product->addMedia('nike-black.jpg')
+            ->preservingOriginal()
+            ->toMediaCollection();
     }
 }
