@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Cart\Contracts\CartInterface;
 use App\Models\Product;
 use App\Models\Variation;
 use Livewire\Component;
@@ -34,9 +35,14 @@ class ProductSelector extends Component
         $this->skuVariant = Variation::find($variantId);
     }
 
-    public function addToCart()
+    public function addToCart(CartInterface $cart)
     {
-
+        $cart->add($this->skuVariant, 1);
+        $this->emit('updated.cart');
+        $this->dispatchBrowserEvent('notification', [
+            'body' => 'Added to cart',
+            'timeout' => 4000
+        ]);
     }
 
     public function render()

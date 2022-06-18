@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class Navigation extends Component
 {
+    protected $listeners = [
+        'updated.cart' => '$refresh'
+    ];
+
     public function getCartProperty(CartInterface $cart)
     {
         return $cart;

@@ -5,6 +5,7 @@ namespace App\Cart;
 use App\Cart\Contracts\CartInterface;
 use App\Models\Cart as ModelsCart;
 use App\Models\User;
+use App\Models\Variation;
 use Illuminate\Session\SessionManager;
 
 class Cart implements CartInterface
@@ -40,6 +41,24 @@ class Cart implements CartInterface
     public function contentsCount()
     {
         return $this->contents()->count();
+    }
+
+    public function add(Variation $variation, $quantity = 1)
+    {
+        if ($existsVariation = $this->getVariation($variation)) {
+            $quantity += $existsVariation->pivot->quantity;
+        }
+
+        $this->instance()->variations()->syncWithoutDetaching([
+            $variation->id => [
+                'quantity' => min($quantity, $variation->stockCount())
+            ]
+        ]);
+    }
+
+    protected function getVariation(Variation $variation)
+    {
+        return $this->instance()->variations->find($variation->id);
     }
 
     protected function instance(): ModelsCart
