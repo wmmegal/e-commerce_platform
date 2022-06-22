@@ -767,8 +767,8 @@ select {
 .w-full {
   width: 100%;
 }
-.w-10 {
-  width: 2.5rem;
+.w-12 {
+  width: 3rem;
 }
 .w-0 {
   width: 0px;

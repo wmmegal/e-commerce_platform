@@ -22,7 +22,7 @@
         <div class="flex items-center space-x-4">
             <div class="text-sm flex items-center space-x-2">
                 <div class="font-semibold">Quantity</div>
-                <input type="text" class="text-sm w-10" value="{{ $variation->quantity }}">
+                <input type="text" class="text-sm w-12" wire:model="quantity">
             </div>
 
             <button class="text-sm">
