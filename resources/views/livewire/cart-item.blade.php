@@ -25,7 +25,7 @@
                 <input type="text" class="text-sm w-12" wire:model="quantity">
             </div>
 
-            <button class="text-sm">
+            <button class="text-sm" wire:click="remove">
                 Remove
             </button>
         </div>
