@@ -58,9 +58,26 @@ class Cart implements CartInterface
 
     public function changeQuantity(Variation $variation, $quantity)
     {
+        $quantity = min($quantity, $variation->stockCount());
+
         $this->instance()->variations()->updateExistingPivot($variation->id, [
-            'quantity' => min($quantity, $variation->stockCount())
+            'quantity' => $quantity
         ]);
+
+        return $quantity;
+    }
+
+    public function subtotal()
+    {
+        return $this->instance()->variations
+            ->reduce(function (int $acc, Variation $variation) {
+                return $acc + ($variation->price * $variation->pivot->quantity);
+            }, 0);
+    }
+
+    public function formattedSubtotal()
+    {
+        return money($this->subtotal());
     }
 
     public function remove(Variation $variation)
