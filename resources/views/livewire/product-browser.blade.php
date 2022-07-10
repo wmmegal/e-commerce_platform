@@ -1,16 +1,19 @@
 <div class="mx-auto sm:px-6 lg:px-8 max-w-7xl py-12 grid grid-cols-6 gap-4">
     <div class="col-span-1">
         <div class="space-y-6">
-            <div class="space-y-1">
-                <ul>
-                    <li>
-                        <a href="" class="text-indigo-500">
-                            Category child
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
+            @if($category->children())
+                <div class="space-y-1">
+                    <ul>
+                        @foreach($category->children as $child)
+                            <li>
+                                <a href="{{ route('cat', $child) }}" class="text-indigo-500">
+                                    {{ $child->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="space-y-6">
                 <div class="space-y-1">
                     <div class="font-semibold">Max price ($0)</div>
@@ -19,11 +22,18 @@
                     </div>
                 </div>
 
-                <div class="space-y-1">
-                    <div class="font-semibold">Filter title</div>
-                    <div class="flex items-center space-x-2">
-                        <input type="checkbox" id="" value=""> <label for="">Filter (count)</label>
-                    </div>
+                <div class="space-y-2">
+                    @foreach($filters as $title => $filter)
+                        <div class="space-y-1">
+                            <div class="font-semibold">{{ Str::title($title) }}</div>
+                            @foreach($filter as $optionName => $count)
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" wire:model="queryFilters.{{ $title }}" id="{{ $title }}_{{ strtolower($optionName) }}" value="{{ $optionName }}">
+                                    <label for="{{ $title }}_{{ strtolower($optionName) }}">{{ $optionName }} ({{ $count }})</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

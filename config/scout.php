@@ -134,7 +134,7 @@ return [
         'key' => env('MEILISEARCH_KEY', null),
         'settings' => [
             \App\Models\Product::class => [
-                'updateFilterableAttributes' => ['id', 'category_ids', 'title', 'slug', 'price'],
+                'updateFilterableAttributes' => ['id', 'category_ids', 'title', 'slug', 'price', 'size', 'color'],
             ],
         ],
     ],

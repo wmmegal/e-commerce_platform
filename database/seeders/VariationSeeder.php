@@ -31,6 +31,14 @@ class VariationSeeder extends Seeder
             'order' => 2
         ]);
 
+        Variation::factory()->create([
+            'product_id' => 2,
+            'title' => 'Rainbow',
+            'price' => 9000,
+            'type' => 'color',
+            'order' => 2
+        ]);
+
         $variation_white_1 = Variation::factory()->create([
             'product_id' => 1,
             'title' => '8',
@@ -68,6 +76,16 @@ class VariationSeeder extends Seeder
             'type' => 'size',
             'sku' => 'kas',
             'parent_id' => 2,
+            'order' => 1
+        ]);
+
+        $variation_raindbow = Variation::factory()->create([
+            'product_id' => 2,
+            'title' => '12',
+            'price' => 9000,
+            'type' => 'size',
+            'sku' => 'xyz',
+            'parent_id' => 3,
             'order' => 1
         ]);
 
