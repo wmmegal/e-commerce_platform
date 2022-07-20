@@ -16,23 +16,28 @@
             @endif
             <div class="space-y-6">
                 <div class="space-y-1">
-                    <div class="font-semibold">Max price ($0)</div>
+                    <div class="font-semibold">Max price ({{ money($maxPrice) }})</div>
                     <div class="flex items-center space-x-2">
-                        <input type="range" min="0" max="">
+                        <input type="range" min="0" max="{{ $maxPrice }}" wire:model="priceRange.max">
                     </div>
                 </div>
 
                 <div class="space-y-2">
                     @foreach($filters as $title => $filter)
-                        <div class="space-y-1">
-                            <div class="font-semibold">{{ Str::title($title) }}</div>
-                            @foreach($filter as $optionName => $count)
-                                <div class="flex items-center space-x-2">
-                                    <input type="checkbox" wire:model="queryFilters.{{ $title }}" id="{{ $title }}_{{ strtolower($optionName) }}" value="{{ $optionName }}">
-                                    <label for="{{ $title }}_{{ strtolower($optionName) }}">{{ $optionName }} ({{ $count }})</label>
-                                </div>
-                            @endforeach
-                        </div>
+                        @if($filter)
+                            <div class="space-y-1">
+                                <div class="font-semibold">{{ Str::title($title) }}</div>
+                                @foreach($filter as $optionName => $count)
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" wire:model="queryFilters.{{ $title }}"
+                                               id="{{ $title }}_{{ strtolower($optionName) }}"
+                                               value="{{ $optionName }}">
+                                        <label for="{{ $title }}_{{ strtolower($optionName) }}">{{ $optionName }}
+                                            ({{ $count }})</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
