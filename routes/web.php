@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get( '/', HomeController::class )->name('home');
 Route::get( '/cart', CartIndexController::class )->name('cart');
 Route::get( 'categories/{category:slug}', CategoryShowController::class )->name('cat');
-Route::get( 'products/{product:slug}', ProductShowController::class );
+Route::get( 'products/{product:slug}', ProductShowController::class )->name('product-show');
 
 Route::get( '/dashboard', function () {
 	return view( 'dashboard' );
